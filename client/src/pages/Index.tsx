@@ -127,7 +127,9 @@ const getHandleAtPoint = (point: Point, shape: Shape, zoom: number): HandleType 
 
     return null;
 };
-const socket = io('http://localhost:3001');
+// NEW: Uses environment variable for production, falls back to localhost for dev
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
+const socket = io(SOCKET_URL);
 
 
 const SyncSpace: React.FC = () => {
